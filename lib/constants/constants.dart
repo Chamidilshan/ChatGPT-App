@@ -4,15 +4,15 @@ import 'package:flutter/material.dart';
 Color scaffoldBackgroundColor = Color(0xFF4445654);
 Color cardcolor = Color(0xFF444654);
 
-// List<String> models = [
-//   'Model1',
-//   'Model2',
-//   'Model3',
-//   'Model4',
-//   'Model5',
-//   'Model6'
-// ];
-//
+List<String> models = [
+  'Model1',
+  'Model2',
+  'Model3',
+  'Model4',
+  'Model5',
+  'Model6'
+];
+
 // List<DropdownMenuItem<String>>? get getModelsItem{
 //   List<DropdownMenuItem<String>>? modelsItems = List<DropdownMenuItem<String>>.generate(
 //       models.length, (index) => DropdownMenuItem(
