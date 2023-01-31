@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:chatgpt_app/services/api_services.dart';
 
+import '../models/chat_models.dart';
+
 class ApiService{
   static Future<List<ModelsModel>> getModels()async{
     try{
@@ -38,4 +40,45 @@ class ApiService{
       rethrow;
     }
   }
+
+  static Future<List<ChatModel>> sendMessage({required String message, required String modelId}) async{
+    try{
+      var response = await http.post(
+          Uri.parse(
+              '$Base_url/completions'
+          ),
+          headers: {
+            'Authorization' : 'Bearer $Api_key',
+            'Content-Type' : 'application/json',
+          },
+          body: jsonEncode({
+            'model': 'text-davinci-003',
+            'prompt': 'Hello what is flutter',
+            'max_tokens': 100,
+          })
+      );
+
+      Map jsonResponse = jsonDecode(response.body);
+
+  if(jsonResponse['error'] != null){
+  //print(' ${jsonResponse['error']['message']}');
+  throw HttpException(jsonResponse['error']['message']);
+  }
+
+ List<ChatModel> chatList = [];
+
+  if(jsonResponse['choices'].length > 0){
+    //log("jsonResponse[choices]text ${jsonResponse["choices"][0]["text"]}");
+    chatList = List.generate(jsonResponse['choices'].length, (index) => ChatModel(
+        msg: jsonResponse['choices'][index]['text'],
+        chatIndex: 1,
+    ),);
+  }
+  return chatList;
+
+}catch(error){
+print('error $error');
+rethrow;
+}
+}
 }
