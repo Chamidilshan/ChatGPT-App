@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:chatgpt_app/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:chatgpt_app/widgets/text_widget.dart';
@@ -32,9 +33,21 @@ class ChatWidget extends StatelessWidget {
                   width: 10.0,
                 ),
                 Expanded(
-                  child: TextWidget(
+                  child: chatIndex == 0
+                  ?TextWidget(
                       label: msg,
-                  ),
+                  ): DefaultTextStyle(
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 16
+                      ),
+                      child: AnimatedTextKit(
+                        isRepeatingAnimation: false,
+                        repeatForever: false,
+                        displayFullTextOnTap: true,
+                        totalRepeatCount: 1,
+                        animatedTexts: [TyperAnimatedText(msg.trim(),),],)),
                 ),
                 chatIndex == 0 ? SizedBox.shrink()
                     :Row(
