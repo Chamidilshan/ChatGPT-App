@@ -10,6 +10,7 @@ import 'dart:developer';
 import 'package:chatgpt_app/services/services.dart';
 import 'package:provider/provider.dart';
 
+import '../models/chat_models.dart';
 import '../providers/models_provider.dart';
 
 class ChatScreen extends StatefulWidget {
@@ -23,19 +24,23 @@ class _ChatScreenState extends State<ChatScreen> {
   
   bool isTyping = false;
   late TextEditingController textEditingController;
+  late FocusNode focusNode;
 
   @override
   void initState(){
     textEditingController = TextEditingController();
+    focusNode = FocusNode();
     super.initState();
   }
 
   @override
   void dispose(){
     textEditingController.dispose();
+    focusNode.dispose();
     super.initState();
   }
-  
+
+  List<ChatModel> chatList = [];
   @override
   Widget build(BuildContext context) {
     final modelsProvider = Provider.of<ModelsProvider>(context);
@@ -66,13 +71,12 @@ class _ChatScreenState extends State<ChatScreen> {
           children: [
             Flexible(
               child: ListView.builder(
-                itemCount: 6,
+                itemCount: chatList.length,
                   itemBuilder: (context, index){
                     return ChatWidget(
-                      msg: chatMessages[index]['msg'].toString(),
-                      chatIndex: int.parse(
-                          chatMessages[index]['chatIndex'].toString()
-                      ),
+                      msg: chatList[index].msg,
+                      chatIndex:
+                          chatList[index].chatIndex,
                     );
                   }
               ),
@@ -93,13 +97,13 @@ class _ChatScreenState extends State<ChatScreen> {
                     children: [
                       Expanded(
                           child: TextField(
+                            focusNode: focusNode,
                             style: TextStyle(
                               color: Colors.white,
                             ),
                             controller: textEditingController,
-                            onSubmitted: (value){
-                              //send message
-                            },
+                            onSubmitted: (value)
+                              async { await sendMessageFCT(modelsProvider: modelsProvider);},
                             decoration: InputDecoration.collapsed(
                                 hintText: 'How can I help you?',
                               hintStyle: TextStyle(
@@ -109,22 +113,7 @@ class _ChatScreenState extends State<ChatScreen> {
                           ),
                       ),
                       IconButton(
-                          onPressed: () async{
-                            try{
-                              setState(() {
-                                isTyping = true;
-                              });
-                              final lst = await ApiService.sendMessage(message: textEditingController.text,
-                                  modelId: modelsProvider.getcurrentModel);
-                            }catch(error){
-                              log('error $error');
-                            }
-                            finally{
-                              setState(() {
-                                isTyping = false;
-                              });
-                            }
-                          },
+                          onPressed: () async { await sendMessageFCT(modelsProvider: modelsProvider);},
                           icon: Icon(
                             Icons.send,
                             color: Colors.white,
@@ -138,5 +127,30 @@ class _ChatScreenState extends State<ChatScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> sendMessageFCT ({required ModelsProvider modelsProvider}) async{
+    try{
+      setState(() {
+        isTyping = true;
+        chatList.add(ChatModel(msg: textEditingController.text, chatIndex: 0),);
+        textEditingController.clear();
+        focusNode.unfocus();
+      });
+      chatList.addAll(
+          await ApiService.sendMessage(message: textEditingController.text,
+              modelId: modelsProvider.getcurrentModel)
+      );
+      setState(() {
+
+      });
+    }catch(error){
+      log('error $error');
+    }
+    finally{
+      setState(() {
+        isTyping = false;
+      });
+    }
   }
 }
