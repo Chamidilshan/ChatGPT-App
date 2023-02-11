@@ -11,6 +11,7 @@ import 'package:chatgpt_app/services/services.dart';
 import 'package:provider/provider.dart';
 
 import '../models/chat_models.dart';
+import '../providers/chat_provider.dart';
 import '../providers/models_provider.dart';
 
 class ChatScreen extends StatefulWidget {
@@ -37,35 +38,31 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   void dispose(){
+    super.dispose();
     _listScrollController.dispose();
     textEditingController.dispose();
     focusNode.dispose();
-    super.initState();
   }
 
-  List<ChatModel> chatList = [];
+  //List<ChatModel> chatList = [];
   @override
   Widget build(BuildContext context) {
     final modelsProvider = Provider.of<ModelsProvider>(context);
+    final chatProvider = Provider.of<ChatProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        elevation: 2.0,
+        elevation: 2,
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Image.asset('images/openai_logo.jpg'),
+          //child: Image.asset(AssetsManager.openaiLogo),
         ),
-        title: Text(
-          'ChatGPT'
-        ),
-        centerTitle: true,
+        title: const Text("ChatGPT"),
         actions: [
           IconButton(
-              onPressed: () async{
-                await Services.showModalSheet(context: context);
-              },
-              icon: Icon(Icons.more_vert_rounded,
-              color: Colors.white,
-              ),
+            onPressed: () async {
+              await Services.showModalSheet(context: context);
+            },
+            icon: const Icon(Icons.more_vert_rounded, color: Colors.white),
           ),
         ],
       ),
@@ -74,91 +71,124 @@ class _ChatScreenState extends State<ChatScreen> {
           children: [
             Flexible(
               child: ListView.builder(
-                controller: _listScrollController,
-                itemCount: chatList.length,
-                  itemBuilder: (context, index){
+                  controller: _listScrollController,
+                  itemCount: chatProvider.getChatList.length, //chatList.length,
+                  itemBuilder: (context, index) {
                     return ChatWidget(
-                      msg: chatList[index].msg,
-                      chatIndex:
-                          chatList[index].chatIndex,
+                      msg: chatProvider
+                          .getChatList[index].msg, // chatList[index].msg,
+                      chatIndex: chatProvider.getChatList[index]
+                          .chatIndex, //chatList[index].chatIndex,
                     );
-                  }
-              ),
+                  }),
             ),
             if (isTyping) ...[
-              SpinKitThreeBounce(
+              const SpinKitThreeBounce(
                 color: Colors.white,
-                size: 18.0,
-              ),],
-              SizedBox(
-                height: 20.0,
+                size: 18,
               ),
-              Material(
-                color: cardcolor,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      Expanded(
-                          child: TextField(
-                            focusNode: focusNode,
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                            controller: textEditingController,
-                            onSubmitted: (value)
-                              async { await sendMessageFCT(modelsProvider: modelsProvider);},
-                            decoration: InputDecoration.collapsed(
-                                hintText: 'How can I help you?',
-                              hintStyle: TextStyle(
-                                color: Colors.grey
-                              )
-                            ),
-                          ),
+            ],
+            const SizedBox(
+              height: 15,
+            ),
+            Material(
+              color: cardcolor,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        focusNode: focusNode,
+                        style: const TextStyle(color: Colors.white),
+                        controller: textEditingController,
+                        onSubmitted: (value) async {
+                          await sendMessageFCT(
+                              modelsProvider: modelsProvider,
+                              chatProvider: chatProvider);
+                        },
+                        decoration: const InputDecoration.collapsed(
+                            hintText: "How can I help you",
+                            hintStyle: TextStyle(color: Colors.grey)),
                       ),
-                      IconButton(
-                          onPressed: () async { await sendMessageFCT(modelsProvider: modelsProvider);},
-                          icon: Icon(
-                            Icons.send,
-                            color: Colors.white,
-                          ),
-                      )
-                    ],
-                  ),
+                    ),
+                    IconButton(
+                        onPressed: () async {
+                          await sendMessageFCT(
+                              modelsProvider: modelsProvider,
+                              chatProvider: chatProvider);
+                        },
+                        icon: const Icon(
+                          Icons.send,
+                          color: Colors.white,
+                        ))
+                  ],
                 ),
-              )
-            ]
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 
-  void scrollListToEND(){
+  void scrollListToEND() {
     _listScrollController.animateTo(
         _listScrollController.position.maxScrollExtent,
-        duration: Duration(seconds: 2),
-        curve: Curves.easeInOut);
+        duration: const Duration(seconds: 2),
+        curve: Curves.easeOut);
   }
 
-  Future<void> sendMessageFCT ({required ModelsProvider modelsProvider}) async{
-    try{
+  Future<void> sendMessageFCT(
+      {required ModelsProvider modelsProvider,
+        required ChatProvider chatProvider}) async {
+    if (isTyping) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: TextWidget(
+            label: "You cant send multiple messages at a time",
+          ),
+          backgroundColor: Colors.red,
+        ),
+      );
+      return;
+    }
+    if (textEditingController.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: TextWidget(
+            label: "Please type a message",
+          ),
+          backgroundColor: Colors.red,
+        ),
+      );
+      return;
+    }
+    try {
+      String msg = textEditingController.text;
       setState(() {
         isTyping = true;
-        chatList.add(ChatModel(msg: textEditingController.text, chatIndex: 0),);
+        // chatList.add(ChatModel(msg: textEditingController.text, chatIndex: 0));
+        chatProvider.addUserMessage(msg: msg);
         textEditingController.clear();
         focusNode.unfocus();
       });
-      chatList.addAll(
-          await ApiService.sendMessage(message: textEditingController.text,
-              modelId: modelsProvider.getCurrentModel)
-      );
-      setState(() {
-
-      });
-    }catch(error){
-      log('error $error');
-    }
-    finally{
+      await chatProvider.sendMessageAndGetAnswers(
+          msg: msg, chosenModelId: modelsProvider.getCurrentModel);
+      // chatList.addAll(await ApiService.sendMessage(
+      //   message: textEditingController.text,
+      //   modelId: modelsProvider.getCurrentModel,
+      // ));
+      setState(() {});
+    } catch (error) {
+      log("error $error");
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: TextWidget(
+          label: error.toString(),
+        ),
+        backgroundColor: Colors.red,
+      ));
+    } finally {
       setState(() {
         scrollListToEND();
         isTyping = false;
