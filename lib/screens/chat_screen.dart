@@ -150,7 +150,7 @@ class _ChatScreenState extends State<ChatScreen> {
       });
       chatList.addAll(
           await ApiService.sendMessage(message: textEditingController.text,
-              modelId: modelsProvider.getcurrentModel)
+              modelId: modelsProvider.getCurrentModel)
       );
       setState(() {
 

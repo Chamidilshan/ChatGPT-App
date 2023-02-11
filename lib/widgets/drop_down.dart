@@ -20,7 +20,7 @@ class _DropDownWidgetState extends State<DropDownWidget> {
   @override
   Widget build(BuildContext context) {
     final modelsProvider = Provider.of<ModelsProvider>(context, listen: false);
-    currentModels = modelsProvider.getcurrentModel;
+    currentModels = modelsProvider.getCurrentModel;
     return FutureBuilder<List<ModelsModel>>(
         future: modelsProvider.getAllModels(),
         builder: (context, snapshot) {

@@ -1,7 +1,7 @@
 import 'package:chatgpt_app/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 
-Color scaffoldBackgroundColor = Color(0xFF4445654);
+Color scaffoldBackgroundColor = Color(0xFF343541);
 Color cardcolor = Color(0xFF444654);
 
 // List<String> models = [
