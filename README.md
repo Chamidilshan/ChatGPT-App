@@ -1,4 +1,4 @@
-#ChatGPT App
+# ChatGPT App
 
 ChatGPT App is a app built with flutter that you can use in mobile devices. You can do your normal chat with ChatGPT like in web. It also includes more chat models and you can select a specific chat model and get answers. You can type your questions and get responses in real time.
 
