@@ -92,41 +92,56 @@ class _ChatScreenState extends State<ChatScreen> {
             const SizedBox(
               height: 15,
             ),
-            Material(
-              color: cardcolor,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        focusNode: focusNode,
-                        style: const TextStyle(color: Colors.white),
-                        controller: textEditingController,
-                        onSubmitted: (value) async {
-                          await sendMessageFCT(
-                              modelsProvider: modelsProvider,
-                              chatProvider: chatProvider);
-                        },
-                        decoration: const InputDecoration.collapsed(
-                            hintText: "How can I help you",
-                            hintStyle: TextStyle(color: Colors.grey)),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Material(
+                color: cardcolor,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          focusNode: focusNode,
+                          style: const TextStyle(color: Colors.white),
+                          controller: textEditingController,
+                          onSubmitted: (value) async {
+                            await sendMessageFCT(
+                                modelsProvider: modelsProvider,
+                                chatProvider: chatProvider);
+                          },
+                          decoration: const InputDecoration.collapsed(
+
+                              hintText: "How can I help you",
+                              hintStyle: TextStyle(color: Colors.grey)),
+                        ),
                       ),
-                    ),
-                    IconButton(
-                        onPressed: () async {
-                          await sendMessageFCT(
-                              modelsProvider: modelsProvider,
-                              chatProvider: chatProvider);
-                        },
-                        icon: const Icon(
-                          Icons.send,
-                          color: Colors.white,
-                        ))
-                  ],
+                      IconButton(
+                          onPressed: () async {
+                            await sendMessageFCT(
+                                modelsProvider: modelsProvider,
+                                chatProvider: chatProvider);
+                          },
+                          icon: const Icon(
+                            Icons.send,
+                            color: Colors.white,
+                          ))
+                    ],
+                  ),
                 ),
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'Free Research Preview. Our goal is to make AI systems more natural and safe to interact with. Your feedback will help us improve.',
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 10.0,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            )
           ],
         ),
       ),

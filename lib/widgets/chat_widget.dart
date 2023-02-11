@@ -55,7 +55,8 @@ class ChatWidget extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     IconButton(
-                      onPressed: () { },
+                      onPressed: () {},
+                      highlightColor: Colors.green.withOpacity(0.3),
                       icon: Icon(
                         Icons.thumb_up_alt_outlined,
                         color: Colors.white,
@@ -66,6 +67,7 @@ class ChatWidget extends StatelessWidget {
                     ),
                     IconButton(
                       onPressed: () {},
+                      highlightColor: Colors.green.withOpacity(0.3),
                       icon: Icon(
                         Icons.thumb_down_outlined,
                         color: Colors.white,
