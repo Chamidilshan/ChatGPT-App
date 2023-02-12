@@ -1,4 +1,5 @@
 import 'package:chatgpt_app/providers/models_provider.dart';
+import 'package:chatgpt_app/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'providers/chat_provider.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
             color: cardcolor,
           )
         ),
-        home: ChatScreen(),
+        home: const SplashScreen(),
       ),
     );
   }
