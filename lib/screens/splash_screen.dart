@@ -9,7 +9,7 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Timer(
-      Duration(seconds: 6),
+      Duration(seconds: 4),
         () => Navigator.of(context).pushReplacement(
             MaterialPageRoute(
           builder: (BuildContext) => ChatScreen())

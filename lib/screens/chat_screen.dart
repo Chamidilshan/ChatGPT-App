@@ -51,19 +51,24 @@ class _ChatScreenState extends State<ChatScreen> {
     final chatProvider = Provider.of<ChatProvider>(context);
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         elevation: 2,
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Image.asset('images/openai_logo.jpg'),
-        ),
+        // leading: Padding(
+        //   padding: const EdgeInsets.all(8.0),
+        //   child: Image.asset('images/openai_logo.jpg'),
+        // ),
         title: const Text("ChatGPT"),
+        titleTextStyle: TextStyle(
+          color: Colors.black,
+          fontSize: 18.0
+        ),
         centerTitle: true,
         actions: [
           IconButton(
             onPressed: () async {
               await Services.showModalSheet(context: context);
             },
-            icon: const Icon(Icons.more_vert_rounded, color: Colors.white),
+            icon: const Icon(Icons.more_vert_rounded, color: Colors.black),
           ),
         ],
       ),
@@ -75,11 +80,14 @@ class _ChatScreenState extends State<ChatScreen> {
                   controller: _listScrollController,
                   itemCount: chatProvider.getChatList.length, //chatList.length,
                   itemBuilder: (context, index) {
-                    return ChatWidget(
-                      msg: chatProvider
-                          .getChatList[index].msg, // chatList[index].msg,
-                      chatIndex: chatProvider.getChatList[index]
-                          .chatIndex, //chatList[index].chatIndex,
+                    return Padding(
+                      padding: const EdgeInsets.only(top: 10.0),
+                      child: ChatWidget(
+                        msg: chatProvider
+                            .getChatList[index].msg, // chatList[index].msg,
+                        chatIndex: chatProvider.getChatList[index]
+                            .chatIndex, //chatList[index].chatIndex,
+                      ),
                     );
                   }),
             ),

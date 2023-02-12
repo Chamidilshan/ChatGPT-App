@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
             color: cardcolor,
           )
         ),
-        home: const SplashScreen(),
+        home: const ChatScreen(),
       ),
     );
   }

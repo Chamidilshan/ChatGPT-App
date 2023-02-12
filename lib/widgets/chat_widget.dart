@@ -42,7 +42,7 @@ class ChatWidget extends StatelessWidget {
                       ): DefaultTextStyle(
                           style: TextStyle(
                             color: Colors.white,
-                            fontWeight: FontWeight.w700,
+                            fontWeight: FontWeight.normal,
                             fontSize: 16
                           ),
                           child: AnimatedTextKit(
@@ -52,40 +52,44 @@ class ChatWidget extends StatelessWidget {
                             totalRepeatCount: 1,
                             animatedTexts: [TyperAnimatedText(msg.trim(),),],)),
                     ),
+                    chatIndex == 0 ? SizedBox.shrink()
+                        :Column(
+                          children: [
+                            Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      // mainAxisAlignment: MainAxisAlignment.end,
+                      // mainAxisSize: MainAxisSize.min,
+                      children: [
+                            IconButton(
+                              onPressed: () {},
+                              highlightColor: Colors.green.withOpacity(0.3),
+                              icon: Icon(
+                                Icons.thumb_up_alt_outlined,
+                                color: Colors.white,
+                                size: 20.0,
+                              ),
+                            ),
+                            // SizedBox(
+                            //   width: 5.0,
+                            // ),
+                            IconButton(
+                              onPressed: () {},
+                              highlightColor: Colors.green.withOpacity(0.3),
+                              icon: Icon(
+                                Icons.thumb_down_outlined,
+                                color: Colors.white,
+                                size: 20.0,
+                              ),
+                            )
+                      ],
+                    ),
+                          ],
+                        )
                   ],
                 ),
                 SizedBox(
                   height: 5.0,
                 ),
-                chatIndex == 0 ? SizedBox.shrink()
-                    :Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  // mainAxisAlignment: MainAxisAlignment.end,
-                  // mainAxisSize: MainAxisSize.min,
-                  children: [
-                    IconButton(
-                      onPressed: () {},
-                      highlightColor: Colors.green.withOpacity(0.3),
-                      icon: Icon(
-                        Icons.thumb_up_alt_outlined,
-                        color: Colors.white,
-                        size: 20.0,
-                      ),
-                    ),
-                    // SizedBox(
-                    //   width: 5.0,
-                    // ),
-                    IconButton(
-                      onPressed: () {},
-                      highlightColor: Colors.green.withOpacity(0.3),
-                      icon: Icon(
-                        Icons.thumb_down_outlined,
-                        color: Colors.white,
-                        size: 20.0,
-                      ),
-                    )
-                  ],
-                )
               ],
             ),
           ),
