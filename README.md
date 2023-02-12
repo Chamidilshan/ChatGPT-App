@@ -1,6 +1,11 @@
-# chatgpt_app
+# ChatGPT App
 
-A new Flutter project.
+ChatGPT App is a app built with flutter that you can use in mobile devices. You can do your normal chat with ChatGPT like in web. It also includes more chat models and you can select a specific chat model and get answers. You can type your questions and get responses in real time.
+
+# Screenshots
+
+![Screenshot_20230211_012855](https://user-images.githubusercontent.com/89196733/218247725-ba5b5320-bba5-459c-a533-320b3469c083.png)
+
 
 ## Getting Started
 
