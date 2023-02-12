@@ -23,36 +23,45 @@ class ChatWidget extends StatelessWidget {
           color: chatIndex == 0 ? scaffoldBackgroundColor: cardcolor,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Row(
+            child: Column(
               children: [
-                Image.asset( chatIndex == 0 ? 'images/person.png' : 'images/chat_logo.png',
-                height: 30.0,
-                  width: 30.0,
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Image.asset( chatIndex == 0 ? 'images/person.png' : 'images/chat_logo.png',
+                    height: 30.0,
+                      width: 30.0,
+                    ),
+                    SizedBox(
+                      width: 10.0,
+                    ),
+                    Expanded(
+                      child: chatIndex == 0
+                      ?TextWidget(
+                          label: msg,
+                      ): DefaultTextStyle(
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 16
+                          ),
+                          child: AnimatedTextKit(
+                            isRepeatingAnimation: false,
+                            repeatForever: false,
+                            displayFullTextOnTap: true,
+                            totalRepeatCount: 1,
+                            animatedTexts: [TyperAnimatedText(msg.trim(),),],)),
+                    ),
+                  ],
                 ),
                 SizedBox(
-                  width: 10.0,
-                ),
-                Expanded(
-                  child: chatIndex == 0
-                  ?TextWidget(
-                      label: msg,
-                  ): DefaultTextStyle(
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 16
-                      ),
-                      child: AnimatedTextKit(
-                        isRepeatingAnimation: false,
-                        repeatForever: false,
-                        displayFullTextOnTap: true,
-                        totalRepeatCount: 1,
-                        animatedTexts: [TyperAnimatedText(msg.trim(),),],)),
+                  height: 5.0,
                 ),
                 chatIndex == 0 ? SizedBox.shrink()
                     :Row(
                   mainAxisAlignment: MainAxisAlignment.end,
-                  mainAxisSize: MainAxisSize.min,
+                  // mainAxisAlignment: MainAxisAlignment.end,
+                  // mainAxisSize: MainAxisSize.min,
                   children: [
                     IconButton(
                       onPressed: () {},
@@ -60,17 +69,19 @@ class ChatWidget extends StatelessWidget {
                       icon: Icon(
                         Icons.thumb_up_alt_outlined,
                         color: Colors.white,
+                        size: 20.0,
                       ),
                     ),
-                    SizedBox(
-                      width: 5.0,
-                    ),
+                    // SizedBox(
+                    //   width: 5.0,
+                    // ),
                     IconButton(
                       onPressed: () {},
                       highlightColor: Colors.green.withOpacity(0.3),
                       icon: Icon(
                         Icons.thumb_down_outlined,
                         color: Colors.white,
+                        size: 20.0,
                       ),
                     )
                   ],
