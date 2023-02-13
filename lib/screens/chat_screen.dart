@@ -108,8 +108,12 @@ class _ChatScreenState extends State<ChatScreen> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Material(
-                  shadowColor: Colors.yellowAccent,
-                  surfaceTintColor: Colors.yellowAccent,
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                      color: Colors.green,
+                    ),
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
                   color: cardcolor,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -137,9 +141,12 @@ class _ChatScreenState extends State<ChatScreen> {
                                   modelsProvider: modelsProvider,
                                   chatProvider: chatProvider);
                             },
-                            icon: const Icon(
-                              Icons.send,
-                              color: Colors.black87,
+                            icon:  Transform.rotate(
+                              angle: 320,
+                              child: Icon(
+                                Icons.send,
+                                color: Colors.black87,
+                              ),
                             ))
                       ],
                     ),
