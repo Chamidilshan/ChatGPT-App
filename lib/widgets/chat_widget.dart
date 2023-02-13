@@ -41,7 +41,7 @@ class ChatWidget extends StatelessWidget {
                           label: msg,
                       ): DefaultTextStyle(
                           style: TextStyle(
-                            //color: Colors.white,
+                            color: Colors.black,
                             fontWeight: FontWeight.normal,
                             fontSize: 16
                           ),
