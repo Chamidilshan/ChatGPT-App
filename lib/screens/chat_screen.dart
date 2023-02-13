@@ -63,96 +63,102 @@ class _ChatScreenState extends State<ChatScreen> {
           color: Colors.black,
           fontSize: 18.0
         ),
+        iconTheme: IconThemeData(color: Colors.black87),
         centerTitle: true,
-        actions: [
-          IconButton(
-            onPressed: () async {
-              await Services.showModalSheet(context: context);
-            },
-            icon: const Icon(Icons.more_vert_rounded, color: Colors.black),
-          ),
-        ],
+        // actions: [
+        //   IconButton(
+        //     onPressed: () async {
+        //       await Services.showModalSheet(context: context);
+        //     },
+        //     icon: const Icon(Icons.more_vert_rounded, color: Colors.black),
+        //   ),
+        // ],
       ),
       drawer: NavigationDrawer(),
       body: SafeArea(
-        child: Column(
-          children: [
-            Flexible(
-              child: ListView.builder(
-                  controller: _listScrollController,
-                  itemCount: chatProvider.getChatList.length, //chatList.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(top: 10.0),
-                      child: ChatWidget(
-                        msg: chatProvider
-                            .getChatList[index].msg, // chatList[index].msg,
-                        chatIndex: chatProvider.getChatList[index]
-                            .chatIndex, //chatList[index].chatIndex,
-                      ),
-                    );
-                  }),
-            ),
-            if (isTyping) ...[
-              const SpinKitThreeBounce(
-                color: Colors.white,
-                size: 18,
-              ),
-            ],
-            const SizedBox(
-              height: 15,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Material(
-                color: cardcolor,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: TextField(
-                          focusNode: focusNode,
-                          style: const TextStyle(color: Colors.white),
-                          controller: textEditingController,
-                          onSubmitted: (value) async {
-                            await sendMessageFCT(
-                                modelsProvider: modelsProvider,
-                                chatProvider: chatProvider);
-                          },
-                          decoration: const InputDecoration.collapsed(
-
-                              hintText: "How can I help you",
-                              hintStyle: TextStyle(color: Colors.grey)),
+        child: Padding(
+          padding: const EdgeInsets.only(top: 8.0),
+          child: Column(
+            children: [
+              Flexible(
+                child: ListView.builder(
+                    controller: _listScrollController,
+                    itemCount: chatProvider.getChatList.length, //chatList.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(top: 10.0),
+                        child: ChatWidget(
+                          msg: chatProvider
+                              .getChatList[index].msg, // chatList[index].msg,
+                          chatIndex: chatProvider.getChatList[index]
+                              .chatIndex, //chatList[index].chatIndex,
                         ),
-                      ),
-                      IconButton(
-                          onPressed: () async {
-                            await sendMessageFCT(
-                                modelsProvider: modelsProvider,
-                                chatProvider: chatProvider);
-                          },
-                          icon: const Icon(
-                            Icons.send,
-                            color: Colors.white,
-                          ))
-                    ],
+                      );
+                    }),
+              ),
+              if (isTyping) ...[
+                const SpinKitThreeBounce(
+                  color: Colors.black,
+                  size: 18,
+                ),
+              ],
+              const SizedBox(
+                height: 15,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Material(
+                  shadowColor: Colors.yellowAccent,
+                  surfaceTintColor: Colors.yellowAccent,
+                  color: cardcolor,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: TextField(
+                            focusNode: focusNode,
+                            style: const TextStyle(color: Colors.black),
+                            controller: textEditingController,
+                            onSubmitted: (value) async {
+                              await sendMessageFCT(
+                                  modelsProvider: modelsProvider,
+                                  chatProvider: chatProvider);
+                            },
+                            decoration: const InputDecoration.collapsed(
+                                hintText: "How can I help you",
+                                hintStyle: TextStyle(color: Colors.grey)
+                            ),
+                          ),
+                        ),
+                        IconButton(
+                            onPressed: () async {
+                              await sendMessageFCT(
+                                  modelsProvider: modelsProvider,
+                                  chatProvider: chatProvider);
+                            },
+                            icon: const Icon(
+                              Icons.send,
+                              color: Colors.black87,
+                            ))
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                'Free Research Preview. Our goal is to make AI systems more natural and safe to interact with. Your feedback will help us improve.',
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 10.0,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'Free Research Preview. Our goal is to make AI systems more natural and safe to interact with. Your feedback will help us improve.',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 10.0,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );
