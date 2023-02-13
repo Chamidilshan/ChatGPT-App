@@ -259,42 +259,46 @@ class NavigationDrawer extends StatelessWidget {
       runSpacing: 20.0,
     ),
   );
-  Widget buildMenuItems(BuildContext context) => Column(
-    children: [
-      ListTile(
-        leading: Icon(Icons.chat_sharp),
-        title: Text('Chat with me'),
-        onTap: () {
-          Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => ChatScreen()));
-        },
-      ),
-      ListTile(
-        leading: Icon(Icons.key_outlined),
-        title: Text('Generate a Key'),
-        onTap: () {
-          Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => GenerateKey())
-          );
-        },
-      ),
-      ListTile(
-        leading: Icon(Icons.home_outlined),
-        title: Text('Home'),
-        onTap: () {},
-      ),
-      Divider(color: Colors.black54),
-      ListTile(
-        leading: Icon(Icons.home_outlined),
-        title: Text('Home'),
-        onTap: () {},
-      ),
-      ListTile(
-        leading: Icon(Icons.home_outlined),
-        title: Text('Home'),
-        onTap: () {},
-      ),
-    ],
+  Widget buildMenuItems(BuildContext context) => Container(
+    padding: EdgeInsets.only(top: 25.0),
+    child: Wrap(
+      runSpacing: 10.0,
+      children: [
+        ListTile(
+          leading: Icon(Icons.chat_outlined),
+          title: Text('Chat with me'),
+          onTap: () {
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => ChatScreen()));
+          },
+        ),
+        ListTile(
+          leading: Icon(Icons.key_outlined),
+          title: Text('Generate a Key'),
+          onTap: () {
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => GenerateKey())
+            );
+          },
+        ),
+        ListTile(
+          leading: Icon(Icons.discord_outlined),
+          title: Text('OpenAI Discord'),
+          onTap: () {},
+        ),
+        Divider(color: Colors.black54),
+        ListTile(
+          leading: Icon(Icons.logout_outlined),
+          title: Text('Log out'),
+          onTap: () {},
+        ),
+        ListTile(
+          leading: Icon(Icons.settings_outlined),
+          title: Text('Settings'),
+          onTap: () {},
+        ),
+      ],
+    ),
   );
 }
 
