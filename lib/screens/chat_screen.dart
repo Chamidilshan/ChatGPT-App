@@ -26,8 +26,8 @@ class _ChatScreenState extends State<ChatScreen> {
   
   bool isTyping = false;
   late TextEditingController textEditingController;
-  late FocusNode focusNode;
   late ScrollController _listScrollController;
+  late FocusNode focusNode;
 
   @override
   void initState(){
@@ -39,10 +39,10 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   void dispose(){
-    super.dispose();
     _listScrollController.dispose();
     textEditingController.dispose();
     focusNode.dispose();
+    super.dispose();
   }
 
   //List<ChatModel> chatList = [];

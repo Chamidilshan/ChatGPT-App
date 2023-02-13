@@ -47,9 +47,10 @@ class ChatWidget extends StatelessWidget {
                           ),
                           child: AnimatedTextKit(
                             isRepeatingAnimation: false,
-                            repeatForever: false,
+                            repeatForever: true,
                             displayFullTextOnTap: true,
                             totalRepeatCount: 0,
+                            stopPauseOnTap: true,
                             animatedTexts: [TyperAnimatedText(msg.trim(),),],)),
                     ),
                     // chatIndex == 0 ? SizedBox.shrink()
