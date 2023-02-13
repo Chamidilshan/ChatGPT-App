@@ -51,9 +51,19 @@ class _GenerateKeyState extends State<GenerateKey> {
               Text(
                 'Generate a', style: TextStyle(fontSize: 20.0, color: Colors.black87),
               ),
+            SizedBox(
+              height: 5.0,
+            ),
             Text(
               'API Key', style: TextStyle(fontSize: 20.0, color: Colors.black87),
             ),
+              SizedBox(
+                height: 15.0,
+              ),
+              Text('To chat with me, get an API key from OpenAI. Click this and follow the steps to generate a key. '
+                  'Then enter the key in our app to start chatting',
+                style: TextStyle(fontSize: 12.0, color: Colors.black87),
+              ),
               // Padding(
               //   padding: const EdgeInsets.all(5.0),
               //   child: Container(
@@ -77,7 +87,7 @@ class _GenerateKeyState extends State<GenerateKey> {
               //   ),
               // ),
             SizedBox(
-              height: 40.0,
+              height: 20.0,
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
@@ -100,51 +110,71 @@ class _GenerateKeyState extends State<GenerateKey> {
                   debugPrint('succesfully');
                 }
               },
-              child: Text('Create new key'),
+              child: Text(
+                  'Create new key',
+                style: TextStyle(fontSize: 12.0, color: Colors.black54),
+              ),
             ),
             SizedBox(
-              height: 20.0,
+              height: 40.0,
             ),
              Container(
                 child: Text(
-                    'After copied your Api key paste and save it here'
+                    'After copied your Api key paste and save it here',
+                  style: TextStyle(fontSize: 12.0, color: Colors.black87),
                     ),
              ),
             SizedBox(
               height: 20.0,
             ),
-            Container(
-              padding: EdgeInsets.all(15.0),
-              child: Text('API Key'),
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.deepOrange,
-                  width: 2.0
-                ),
-                borderRadius: BorderRadius.circular(20.0)
-              ),
-            ),
-            SizedBox(
-              height: 20.0,
-            ),
+            // Container(
+            //   padding: EdgeInsets.all(15.0),
+            //   child: Text('API Key'),
+            //   decoration: BoxDecoration(
+            //     border: Border.all(
+            //       color: Colors.deepOrange,
+            //       width: 2.0
+            //     ),
+            //     borderRadius: BorderRadius.circular(20.0)
+            //   ),
+            // ),
             TextField(
               decoration: InputDecoration(
-                labelText: 'Paste your api key',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                  borderSide: BorderSide(
+                    color: Colors.red,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                  borderSide: BorderSide(
+                    color: Colors.green,
+                  ),
+                ),
+                floatingLabelStyle: TextStyle(
+                  color: Colors.black54
+                ),
+                labelText: 'Paste your API Key',
+                labelStyle: TextStyle(
+                  fontSize: 12.0,
+                ),
+                suffixIcon: IconButton(
+                    onPressed: () async {
+                      final clipPaste =  await Clipboard.getData(Clipboard.kTextPlain);
+                      final text = clipPaste == null ? '' : clipPaste.text!;
+                      setState(() {
+                        pasteController.text = text;
+                      });
+                    },
+                    icon: Icon(
+                      Icons.content_paste,
+                      color: Colors.blueGrey,
+                      size: 15.0,
+                    )
+                ),
               ),
               controller: pasteController,
-            ),
-            IconButton(
-                onPressed: () async {
-                  final clipPaste =  await Clipboard.getData(Clipboard.kTextPlain);
-                  final text = clipPaste == null ? '' : clipPaste.text!;
-                  setState(() {
-                    pasteController.text = text;
-                  });
-                  },
-                icon: Icon(
-                  Icons.content_paste,
-                  color: Colors.green,
-                )
             ),
             TextButton(
                 onPressed: () async {
