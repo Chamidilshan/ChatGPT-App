@@ -41,7 +41,7 @@ class ChatWidget extends StatelessWidget {
                           label: msg,
                       ): DefaultTextStyle(
                           style: TextStyle(
-                            color: Colors.white,
+                            //color: Colors.white,
                             fontWeight: FontWeight.normal,
                             fontSize: 16
                           ),
@@ -49,42 +49,42 @@ class ChatWidget extends StatelessWidget {
                             isRepeatingAnimation: false,
                             repeatForever: false,
                             displayFullTextOnTap: true,
-                            totalRepeatCount: 1,
+                            totalRepeatCount: 0,
                             animatedTexts: [TyperAnimatedText(msg.trim(),),],)),
                     ),
-                    chatIndex == 0 ? SizedBox.shrink()
-                        :Column(
-                          children: [
-                            Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      // mainAxisAlignment: MainAxisAlignment.end,
-                      // mainAxisSize: MainAxisSize.min,
-                      children: [
-                            IconButton(
-                              onPressed: () {},
-                              highlightColor: Colors.green.withOpacity(0.3),
-                              icon: Icon(
-                                Icons.thumb_up_alt_outlined,
-                                color: Colors.white,
-                                size: 20.0,
-                              ),
-                            ),
-                            // SizedBox(
-                            //   width: 5.0,
-                            // ),
-                            IconButton(
-                              onPressed: () {},
-                              highlightColor: Colors.green.withOpacity(0.3),
-                              icon: Icon(
-                                Icons.thumb_down_outlined,
-                                color: Colors.white,
-                                size: 20.0,
-                              ),
-                            )
-                      ],
-                    ),
-                          ],
-                        )
+                    // chatIndex == 0 ? SizedBox.shrink()
+                    //     :Column(
+                    //       children: [
+                    //         Row(
+                    //   mainAxisAlignment: MainAxisAlignment.end,
+                    //   // mainAxisAlignment: MainAxisAlignment.end,
+                    //   // mainAxisSize: MainAxisSize.min,
+                    //   children: [
+                    //         IconButton(
+                    //           onPressed: () {},
+                    //           highlightColor: Colors.green.withOpacity(0.3),
+                    //           icon: Icon(
+                    //             Icons.thumb_up_alt_outlined,
+                    //             color: Colors.white,
+                    //             size: 20.0,
+                    //           ),
+                    //         ),
+                    //         // SizedBox(
+                    //         //   width: 5.0,
+                    //         // ),
+                    //         IconButton(
+                    //           onPressed: () {},
+                    //           highlightColor: Colors.green.withOpacity(0.3),
+                    //           icon: Icon(
+                    //             Icons.thumb_down_outlined,
+                    //             color: Colors.white,
+                    //             size: 20.0,
+                    //           ),
+                    //         )
+                    //   ],
+                    // ),
+                    //       ],
+                    //     )
                   ],
                 ),
                 SizedBox(

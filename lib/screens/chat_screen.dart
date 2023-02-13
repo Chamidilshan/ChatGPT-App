@@ -52,7 +52,7 @@ class _ChatScreenState extends State<ChatScreen> {
     final chatProvider = Provider.of<ChatProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        //backgroundColor: Colors.white,
         elevation: 2,
         // leading: Padding(
         //   padding: const EdgeInsets.all(8.0),
