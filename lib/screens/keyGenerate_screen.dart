@@ -42,13 +42,47 @@ class _GenerateKeyState extends State<GenerateKey> {
       drawer: NavigationDrawer(),
       body: Column(
         children: [
-            Text('To chat with me, get an API key from OpenAI. Go to https://beta.openai.com/, create an account, and follow the steps '
-                'to generate a key . Then enter the key in our app to start chatting."'
+          SizedBox(
+            height: 20.0,
+          ),
+            Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: Container(
+                padding: EdgeInsets.all(15.0),
+                child: Text('To chat with me you should generate a API key'),
+                decoration: BoxDecoration(
+                    border: Border.all(
+                        color: Colors.green,
+                        width: 2.0
+                    ),
+                    borderRadius: BorderRadius.circular(20.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.green,
+                      blurRadius: 10.0,
+                      offset: Offset(0, 10),
+                    )
+                  ],
+                  color: Colors.white
+                ),
+              ),
             ),
           SizedBox(
             height: 20.0,
           ),
           ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.white,
+              padding: EdgeInsets.all(20.0),
+              fixedSize: Size(160, 40),
+              textStyle: TextStyle(
+                fontSize: 15.0,
+                fontWeight: FontWeight.bold,
+              ),
+              onPrimary: Colors.black,
+              elevation: 15.0,
+              shape: StadiumBorder(),
+            ),
             onPressed: () async{
           //final url = 'https://google.com';
 
