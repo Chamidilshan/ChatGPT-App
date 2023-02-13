@@ -1,5 +1,5 @@
 import 'package:chatgpt_app/constants/constants.dart';
-import 'package:chatgpt_app/screens/key_page.dart';
+import 'package:chatgpt_app/screens/keyGenerate_screen.dart';
 import 'package:chatgpt_app/services/api_services.dart';
 import 'package:chatgpt_app/services/assets_manager.dart';
 import 'package:chatgpt_app/widgets/chat_widget.dart';
@@ -263,15 +263,15 @@ class NavigationDrawer extends StatelessWidget {
     children: [
       ListTile(
         leading: Icon(Icons.chat_sharp),
-        title: Text('Chat'),
+        title: Text('Chat with me'),
         onTap: () {
           Navigator.of(context).pushReplacement(
               MaterialPageRoute(builder: (context) => ChatScreen()));
         },
       ),
       ListTile(
-        leading: Icon(Icons.home_outlined),
-        title: Text('Chat'),
+        leading: Icon(Icons.key_outlined),
+        title: Text('Generate a Key'),
         onTap: () {
           Navigator.of(context).push(
               MaterialPageRoute(builder: (context) => GenerateKey())

@@ -1,4 +1,5 @@
 import 'package:chatgpt_app/providers/models_provider.dart';
+import 'package:chatgpt_app/screens/keyGenerate_screen.dart';
 import 'package:chatgpt_app/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'providers/chat_provider.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
             color: cardcolor,
           )
         ),
-        home: const ChatScreen(),
+        home: const GenerateKey(),
       ),
     );
   }
