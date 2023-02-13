@@ -1,4 +1,5 @@
 import 'package:chatgpt_app/constants/constants.dart';
+import 'package:chatgpt_app/screens/key_page.dart';
 import 'package:chatgpt_app/services/api_services.dart';
 import 'package:chatgpt_app/services/assets_manager.dart';
 import 'package:chatgpt_app/widgets/chat_widget.dart';
@@ -72,6 +73,7 @@ class _ChatScreenState extends State<ChatScreen> {
           ),
         ],
       ),
+      drawer: NavigationDrawer(),
       body: SafeArea(
         child: Column(
           children: [
@@ -220,3 +222,68 @@ class _ChatScreenState extends State<ChatScreen> {
     }
   }
 }
+
+class NavigationDrawer extends StatelessWidget {
+  const NavigationDrawer({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return  Drawer(
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            buildHeader(context),
+            buildMenuItems(context),
+          ],
+        ),
+      ),
+    );
+  }
+  Widget buildHeader(BuildContext context) => Container(
+    padding: EdgeInsets.all(24.0),
+    child: Wrap(
+      runSpacing: 20.0,
+    ),
+  );
+  Widget buildMenuItems(BuildContext context) => Column(
+    children: [
+      ListTile(
+        leading: Icon(Icons.chat_sharp),
+        title: Text('Chat'),
+        onTap: () {
+          Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => ChatScreen()));
+        },
+      ),
+      ListTile(
+        leading: Icon(Icons.home_outlined),
+        title: Text('Chat'),
+        onTap: () {
+          Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => GenerateKey())
+          );
+        },
+      ),
+      ListTile(
+        leading: Icon(Icons.home_outlined),
+        title: Text('Home'),
+        onTap: () {},
+      ),
+      Divider(color: Colors.black54),
+      ListTile(
+        leading: Icon(Icons.home_outlined),
+        title: Text('Home'),
+        onTap: () {},
+      ),
+      ListTile(
+        leading: Icon(Icons.home_outlined),
+        title: Text('Home'),
+        onTap: () {},
+      ),
+    ],
+  );
+}
+
+
+
