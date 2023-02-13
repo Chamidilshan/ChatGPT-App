@@ -46,7 +46,7 @@ class _GenerateKeyState extends State<GenerateKey> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: 20.0,
+              height: 40.0,
             ),
               Text(
                 'Generate a', style: TextStyle(fontSize: 20.0, color: Colors.black87),
@@ -60,7 +60,7 @@ class _GenerateKeyState extends State<GenerateKey> {
               SizedBox(
                 height: 15.0,
               ),
-              Text('To chat with me, get an API key from OpenAI. Click this and follow the steps to generate a key. '
+              Text('To chat with me, get an API key from OpenAI. Simply click this button and follow the steps to generate a key. '
                   'Then enter the key in our app to start chatting',
                 style: TextStyle(fontSize: 12.0, color: Colors.black87),
               ),
@@ -153,7 +153,7 @@ class _GenerateKeyState extends State<GenerateKey> {
                   ),
                 ),
                 floatingLabelStyle: TextStyle(
-                  color: Colors.black54
+                  color: Colors.black87
                 ),
                 labelText: 'Paste your API Key',
                 labelStyle: TextStyle(
@@ -176,7 +176,22 @@ class _GenerateKeyState extends State<GenerateKey> {
               ),
               controller: pasteController,
             ),
-            TextButton(
+            SizedBox(
+              height: 20.0,
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.white,
+                padding: EdgeInsets.all(20.0),
+                fixedSize: Size(160, 40),
+                textStyle: TextStyle(
+                  fontSize: 15.0,
+                  fontWeight: FontWeight.bold,
+                ),
+                onPrimary: Colors.black,
+                elevation: 15.0,
+                shape: StadiumBorder(),
+              ),
                 onPressed: () async {
                   setState(() {
                     Api_key2 = pasteController.text;
@@ -186,11 +201,11 @@ class _GenerateKeyState extends State<GenerateKey> {
                   prefs.setString('ApiKey', Api_key2);
                   print(ApiKey);
                 },
-              child: Text('Save'),
+              child: Text(
+                  'Save',
+                style: TextStyle(fontSize: 12.0, color: Colors.black54),
+              ),
             ),
-            TextButton(onPressed: () {
-              print(ApiKey);
-            }, child: Text('Key is'),)
           ],
         ),
       ),
