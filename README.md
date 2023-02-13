@@ -4,12 +4,13 @@ ChatGPT App is a app built with flutter that you can use in mobile devices. You 
 
 # Screenshots
 
-![Screenshot_20230211_012855](https://user-images.githubusercontent.com/89196733/218247725-ba5b5320-bba5-459c-a533-320b3469c083.png)
+![Screenshot_20230213_033746](https://user-images.githubusercontent.com/89196733/218429898-4cae8371-c614-4635-a636-b6fef5f6ace5.png)
 
 
 ## Getting Started
 
 This project is a starting point for a Flutter application.
+
 
 A few resources to get you started if this is your first Flutter project:
 
