@@ -1,7 +1,9 @@
 import 'package:chatgpt_app/screens/chat_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/services.dart';
+import 'package:chatgpt_app/constants/api_consts.dart';
 
 class GenerateKey extends StatefulWidget {
 
@@ -12,6 +14,18 @@ class GenerateKey extends StatefulWidget {
 class _GenerateKeyState extends State<GenerateKey> {
 
   TextEditingController pasteController = TextEditingController();
+  String ApiKey = '';
+
+  @override void initState() {
+    getData();
+  }
+
+  getData() async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      ApiKey = prefs.getString('ApiKey')!;
+    });
+  }
 
   @override
   void dispose(){
@@ -88,7 +102,22 @@ class _GenerateKeyState extends State<GenerateKey> {
                 Icons.content_paste,
                 color: Colors.green,
               )
-          )
+          ),
+          TextButton(
+              onPressed: () async {
+                setState(() {
+                  Api_key2 = pasteController.text;
+                  print(Api_key2);
+                });
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                prefs.setString('ApiKey', Api_key2);
+                print(ApiKey);
+              },
+            child: Text('Save'),
+          ),
+          TextButton(onPressed: () {
+            print(ApiKey);
+          }, child: Text('Key is'),)
         ],
       ),
     );

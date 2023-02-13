@@ -41,6 +41,7 @@ dependencies:
   provider: ^6.0.5
   animated_text_kit: ^4.2.2
   url_launcher: ^6.1.9
+  shared_preferences: ^2.0.17
 
 dev_dependencies:
   flutter_test:
