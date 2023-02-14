@@ -43,7 +43,20 @@ class SplashScreen extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(left: 40.0, right: 40.0),
-            child: Lottie.network('https://assets6.lottiefiles.com/packages/lf20_7prnsonq.json',
+            child: Column(
+              children: [
+                Text(
+                    'Loading your chat assistant',
+                  style: TextStyle(
+                    color: Colors.grey
+                  ),
+                ),
+                SizedBox(
+                  height: 5.0,
+                ),
+                Lottie.network('https://assets6.lottiefiles.com/packages/lf20_7prnsonq.json',
+                ),
+              ],
             ),
           ),
         ],

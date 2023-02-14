@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:chatgpt_app/screens/chat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -36,6 +38,7 @@ class _GenerateKeyState extends State<GenerateKey> {
   }
 
   @override
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -201,86 +204,68 @@ class _GenerateKeyState extends State<GenerateKey> {
                     setState(() {
                       Api_key2 = pasteController.text;
                       print(Api_key2);
+                      Timer(
+                          Duration(seconds: 3),
+                              () => Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (BuildContext) => ChatScreen())
+                          )
+                      );
                     });
                     SharedPreferences prefs = await SharedPreferences.getInstance();
                     prefs.setString('ApiKey', Api_key2);
                     print(ApiKey);
                     ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
-                          content: Stack(
-                            children: [
-                              Container(
-                                padding: EdgeInsets.all(16.0),
-                                height: 140.0,
-                                  decoration: BoxDecoration(
-                                    color: Colors.green,
-                                    borderRadius: BorderRadius.circular(20.0),
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      SizedBox(
-                                        width: 50.0,
-                                      ),
-                                      Expanded(
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Text('Success',style: TextStyle(
-                                              fontSize: 20.0,
+                          content: Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: Stack(
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.all(16.0),
+                                  height: 90.0,
+                                    decoration: BoxDecoration(
+                                      color: Colors.green,
+                                      borderRadius: BorderRadius.circular(20.0),
+                                    ),
+                                    child: Expanded(
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text('Success',style: TextStyle(
+                                            fontSize: 20.0,
+                                            color: Colors.white,
+                                          ),
+                                          ),
+                                          SizedBox(
+                                            height: 5.0,
+                                          ),
+                                          Text('Your OpenAI API key has been saved successfully. You wont need to enter it again in the future.',
+                                            style: TextStyle(
+                                              fontSize: 12.0,
                                               color: Colors.white,
                                             ),
-                                            ),
-                                            SizedBox(
-                                              height: 5.0,
-                                            ),
-                                            Text('Your OpenAI API key has been saved successfully. You wont need to enter it again in the future.',
-                                              style: TextStyle(
-                                                fontSize: 12.0,
-                                                color: Colors.white,
-                                              ),
-                                              maxLines: 2,
-                                                overflow: TextOverflow.ellipsis,
-                                            ),
-                                            Row(
-                                              children: [
-                                                Text('Launch chat page'),
-                                                GestureDetector(
-                                                  onTap: () {
-
-                                                  },
-                                                  child: IconButton(
-                                                      onPressed: () {
-                                                        Navigator.push(
-                                                            context,
-                                                          MyRoute(builder: (context) => ChatScreen(),
-                                                        ),
-                                                        );
-                                                      },
-                                                      icon: Icon(Icons.navigate_next_outlined),
-                                                    color: Colors.yellow,
-                                                    style: ButtonStyle(),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
+                                            maxLines: 2,
+                                              overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ],
                                       ),
-                                    ],
-                                  )
-                              ),
-                              //SvgPicture.asset('images/bubbles.svg',
-                                // height: 48.0,
-                                //   width: 40.0,
-                                // color: Colors.red,
-                              //),
-                            ],
+                                    )
+                                ),
+                                //SvgPicture.asset('images/bubbles.svg',
+                                  // height: 48.0,
+                                  //   width: 40.0,
+                                  // color: Colors.red,
+                                //),
+                              ],
+                            ),
                           ),
                           behavior: SnackBarBehavior.floating,
                           backgroundColor: Colors.transparent,
                           elevation: 0,
                           duration: Duration(seconds: 2),
                         ),
+
                     );
                   },
                 child: Text(
@@ -294,11 +279,4 @@ class _GenerateKeyState extends State<GenerateKey> {
       ),
     );
   }
-}
-
-class MyRoute extends MaterialPageRoute {
-  MyRoute({required WidgetBuilder builder}) : super(builder: builder);
-
-  @override
-  Duration get transitionDuration => Duration(seconds: 2);
 }
