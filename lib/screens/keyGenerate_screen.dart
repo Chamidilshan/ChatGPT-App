@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/services.dart';
 import 'package:chatgpt_app/constants/api_consts.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class GenerateKey extends StatefulWidget {
 
@@ -160,6 +161,7 @@ class _GenerateKeyState extends State<GenerateKey> {
                   labelText: 'Paste your API Key',
                   labelStyle: TextStyle(
                     fontSize: 12.0,
+                    color: Colors.black87
                   ),
                   suffixIcon: IconButton(
                       onPressed: () async {
@@ -202,6 +204,60 @@ class _GenerateKeyState extends State<GenerateKey> {
                     SharedPreferences prefs = await SharedPreferences.getInstance();
                     prefs.setString('ApiKey', Api_key2);
                     print(ApiKey);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Stack(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.all(16.0),
+                                height: 90.0,
+                                  decoration: BoxDecoration(
+                                    color: Colors.green,
+                                    borderRadius: BorderRadius.circular(20.0),
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      SizedBox(
+                                        width: 50.0,
+                                      ),
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text('Success',style: TextStyle(
+                                              fontSize: 18.0,
+                                              color: Colors.white,
+                                            ),
+                                            ),
+                                            SizedBox(
+                                              height: 5.0,
+                                            ),
+                                            Text('Your OpenAI API key has been saved successfully. You wont need to enter it again in the future.',
+                                              style: TextStyle(
+                                                fontSize: 12.0,
+                                                color: Colors.white,
+                                              ),
+                                              maxLines: 2,
+                                                overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                              ),
+                              //SvgPicture.asset('images/bubbles.svg',
+                                // height: 48.0,
+                                //   width: 40.0,
+                                // color: Colors.red,
+                              //),
+                            ],
+                          ),
+                          behavior: SnackBarBehavior.floating,
+                          backgroundColor: Colors.transparent,
+                          elevation: 0,
+                        ),
+                    );
                   },
                 child: Text(
                     'Save',

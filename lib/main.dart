@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
             color: cardcolor,
           )
         ),
-        home:  SplashScreen(),
+        home:  GenerateKey(),
       ),
     );
   }
