@@ -11,7 +11,8 @@ Introducing ChatGPT app, a Flutter app that lets you chat with OpenAI's language
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![ChatGPT APP](https://user-images.githubusercontent.com/89196733/218802241-b56b8741-da3e-484c-866e-350b021c70e7.jpg)
+
 
 
 ## Installation
