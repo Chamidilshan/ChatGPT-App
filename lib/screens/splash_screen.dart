@@ -8,13 +8,13 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Timer(
-    //   Duration(seconds: 2),
-    //     () => Navigator.of(context).pushReplacement(
-    //         MaterialPageRoute(
-    //       builder: (BuildContext) => ChatScreen())
-    //     )
-    // );
+    Timer(
+      Duration(seconds: 2),
+        () => Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+          builder: (BuildContext) => ChatScreen())
+        )
+    );
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
@@ -52,10 +52,12 @@ class SplashScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 5.0,
+                  height: 10.0,
                 ),
-                Lottie.network('https://assets6.lottiefiles.com/packages/lf20_7prnsonq.json',
+                Lottie.network(
+                  'https://assets6.lottiefiles.com/packages/lf20_7prnsonq.json',
                 ),
+                //Lottie.asset('assets/loading.json'),
               ],
             ),
           ),
