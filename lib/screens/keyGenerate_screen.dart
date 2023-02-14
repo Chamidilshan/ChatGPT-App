@@ -5,6 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/services.dart';
 import 'package:chatgpt_app/constants/api_consts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 class GenerateKey extends StatefulWidget {
 
@@ -210,7 +211,7 @@ class _GenerateKeyState extends State<GenerateKey> {
                             children: [
                               Container(
                                 padding: EdgeInsets.all(16.0),
-                                height: 90.0,
+                                height: 140.0,
                                   decoration: BoxDecoration(
                                     color: Colors.green,
                                     borderRadius: BorderRadius.circular(20.0),
@@ -225,7 +226,7 @@ class _GenerateKeyState extends State<GenerateKey> {
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             Text('Success',style: TextStyle(
-                                              fontSize: 18.0,
+                                              fontSize: 20.0,
                                               color: Colors.white,
                                             ),
                                             ),
@@ -239,6 +240,28 @@ class _GenerateKeyState extends State<GenerateKey> {
                                               ),
                                               maxLines: 2,
                                                 overflow: TextOverflow.ellipsis,
+                                            ),
+                                            Row(
+                                              children: [
+                                                Text('Launch chat page'),
+                                                GestureDetector(
+                                                  onTap: () {
+
+                                                  },
+                                                  child: IconButton(
+                                                      onPressed: () {
+                                                        Navigator.push(
+                                                            context,
+                                                          MyRoute(builder: (context) => ChatScreen(),
+                                                        ),
+                                                        );
+                                                      },
+                                                      icon: Icon(Icons.navigate_next_outlined),
+                                                    color: Colors.yellow,
+                                                    style: ButtonStyle(),
+                                                  ),
+                                                ),
+                                              ],
                                             ),
                                           ],
                                         ),
@@ -256,6 +279,7 @@ class _GenerateKeyState extends State<GenerateKey> {
                           behavior: SnackBarBehavior.floating,
                           backgroundColor: Colors.transparent,
                           elevation: 0,
+                          duration: Duration(seconds: 2),
                         ),
                     );
                   },
@@ -272,3 +296,9 @@ class _GenerateKeyState extends State<GenerateKey> {
   }
 }
 
+class MyRoute extends MaterialPageRoute {
+  MyRoute({required WidgetBuilder builder}) : super(builder: builder);
+
+  @override
+  Duration get transitionDuration => Duration(seconds: 2);
+}
