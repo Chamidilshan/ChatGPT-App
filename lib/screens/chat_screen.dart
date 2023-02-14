@@ -10,6 +10,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'dart:developer';
 import 'package:chatgpt_app/services/services.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../models/chat_models.dart';
 import '../providers/chat_provider.dart';
@@ -284,7 +285,12 @@ class NavigationDrawer extends StatelessWidget {
         ListTile(
           leading: Icon(Icons.discord_outlined),
           title: Text('OpenAI Discord'),
-          onTap: () {},
+          onTap: () async {
+            if(await launch('https://discord.com/invite/openai',
+            )){
+            debugPrint('succesfully');
+            }
+          },
         ),
         Divider(color: Colors.black54),
         ListTile(
