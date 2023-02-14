@@ -1,6 +1,6 @@
 # ChatGPT App
 
-Introducing ChatGPT app, a Flutter app that lets you chat with OpenAI's language model. With its sleek and user-friendly interface, this app takes your chat experience to the next level.
+Introducing ChatGPT app, a Flutter app that lets you chat with OpenAI's language model. With its sleek and user-friendly interface, this app takes your chat experience to the next level. Its easy-to-use input field and ability to save API keys make chatting with the AI language model a breeze.
 
 ## Features
 - Live previews
