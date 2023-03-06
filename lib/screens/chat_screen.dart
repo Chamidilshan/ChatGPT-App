@@ -120,6 +120,9 @@ class _ChatScreenState extends State<ChatScreen> {
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
                       children: [
+                        
+                        // ask me anything  
+                        
                         Expanded(
                           child: TextField(
                             focusNode: focusNode,
