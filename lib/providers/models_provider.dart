@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:chatgpt_app/models/models.dart';
 
 class ModelsProvider with ChangeNotifier {
-  String currentModel = "text-davinci-003";
+  String currentModel = "gpt-3.5-turbo-0301";
   String get getCurrentModel {
     return currentModel;
   }

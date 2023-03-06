@@ -9,7 +9,7 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Timer(
-      Duration(seconds: 2),
+      Duration(seconds: 8),
         () => Navigator.of(context).pushReplacement(
             MaterialPageRoute(
           builder: (BuildContext) => ChatScreen())
@@ -45,19 +45,16 @@ class SplashScreen extends StatelessWidget {
             padding: const EdgeInsets.only(left: 40.0, right: 40.0),
             child: Column(
               children: [
-                Text(
-                    'Loading your chat assistant',
-                  style: TextStyle(
-                    color: Colors.grey
-                  ),
-                ),
-                SizedBox(
-                  height: 10.0,
-                ),
-                Lottie.network(
-                  'https://assets6.lottiefiles.com/packages/lf20_7prnsonq.json',
-                ),
-                //Lottie.asset('assets/loading.json'),
+                // Text(
+                //     'Loading your chat assistant',
+                //   style: TextStyle(
+                //     color: Colors.grey
+                //   ),
+                // ),
+                Lottie.asset('assets/loadingBar.json'),
+                // Lottie.network(
+                //   'https://assets6.lottiefiles.com/packages/lf20_7prnsonq.json',
+                // ),
               ],
             ),
           ),

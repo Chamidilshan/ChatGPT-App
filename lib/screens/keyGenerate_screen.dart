@@ -93,22 +93,25 @@ class _GenerateKeyState extends State<GenerateKey> {
                 //   ),
                 // ),
               SizedBox(
-                height: 20.0,
+                height: 40.0,
               ),
               ElevatedButton(
+                child: Text('Begin',
+                  style: TextStyle(fontSize: 12.0, color: Colors.black54),
+                ),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
-                  padding: EdgeInsets.all(20.0),
+                  //padding: EdgeInsets.all(20.0),
                   fixedSize: Size(160, 40),
                   textStyle: TextStyle(
                     fontSize: 15.0,
                     fontWeight: FontWeight.bold,
-                    color: Colors.black87
                   ),
                   onPrimary: Colors.black,
                   elevation: 15.0,
                   shape: StadiumBorder(),
                 ),
+
                 onPressed: () async{
               //final url = 'https://google.com';
 
@@ -117,10 +120,6 @@ class _GenerateKeyState extends State<GenerateKey> {
                     debugPrint('succesfully');
                   }
                 },
-                child: Text(
-                    'Create new key',
-                  style: TextStyle(fontSize: 12.0, color: Colors.black54),
-                ),
               ),
               SizedBox(
                 height: 40.0,
@@ -190,7 +189,7 @@ class _GenerateKeyState extends State<GenerateKey> {
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
-                  padding: EdgeInsets.all(20.0),
+                  //padding: EdgeInsets.all(20.0),
                   fixedSize: Size(160, 40),
                   textStyle: TextStyle(
                     fontSize: 15.0,
