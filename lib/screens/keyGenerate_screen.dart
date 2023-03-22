@@ -44,7 +44,7 @@ class _GenerateKeyState extends State<GenerateKey> {
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.black87),
       ),
-      drawer: NavigationDrawer(),
+      drawer: NavigationDrawerNew(),
       body: SafeArea(
         child: Container(
           padding: EdgeInsets.only(left: 40.0, right: 40.0, top: 20.0),
@@ -201,8 +201,8 @@ class _GenerateKeyState extends State<GenerateKey> {
                 ),
                   onPressed: () async {
                     setState(() {
-                      Api_key2 = pasteController.text;
-                      print(Api_key2);
+                      Api_key = pasteController.text;
+                      print(Api_key);
                       Timer(
                           Duration(seconds: 3),
                               () => Navigator.of(context).pushReplacement(
@@ -212,7 +212,7 @@ class _GenerateKeyState extends State<GenerateKey> {
                       );
                     });
                     SharedPreferences prefs = await SharedPreferences.getInstance();
-                    prefs.setString('ApiKey', Api_key2);
+                    prefs.setString('ApiKey', Api_key);
                     print(ApiKey);
                     ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(

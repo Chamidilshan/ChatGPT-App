@@ -75,7 +75,7 @@ class _ChatScreenState extends State<ChatScreen> {
         //   ),
         // ],
       ),
-      drawer: NavigationDrawer(),
+      drawer: NavigationDrawerNew(),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(top: 8.0),
@@ -237,8 +237,8 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 }
 
-class NavigationDrawer extends StatelessWidget {
-  const NavigationDrawer({Key? key}) : super(key: key);
+class NavigationDrawerNew extends StatelessWidget {
+  const NavigationDrawerNew({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
